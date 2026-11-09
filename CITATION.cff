@@ -4,12 +4,11 @@ title: "Mellingen – Äbereich (NFA-001): project record"
 type: dataset
 authors:
   - name: "Nature Finance Accelerator"
-  - family-names: "Häni"
-    given-names: "Matthias"
-    affiliation: "Nature Finance Accelerator"
 version: "0.1"
 date-released: "2026-11-08"
 license: CC-BY-4.0
-url: "https://register.nfa.ch/project.html?id=mellingen"
+url: "https://naturefinanceaccelerator.github.io/nfa-register/project.html?id=mellingen"
+repository: "https://github.com/naturefinanceaccelerator/nfa-001-mellingen"
 contact:
-  - email: register@nfa.ch
+  - name: "Nature Finance Accelerator"
+    email: register@nfa.ch
