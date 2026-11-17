@@ -9,10 +9,10 @@ The project's entry in the NFA Project Register is generated from `nfa-project.j
 
 | Path | Content |
 |---|---|
-| `nfa-project.json` | The project file: description, measurements, datasets, agreements, organisations, timeline. The only file the register reads. |
-| `images/` | Photos shown on the register page. The first entry in `images` is the header photo; with two or more, the page shows an Images section. |
+| `nfa-project.json` | The project file: description, developer plus funder, measurement rounds, basket of core metrics, datasets, agreements, organisations, timeline. The only file the register reads. |
+| `images/` | Photos shown on the register page. The first entry in `images` is the header photo; the others appear in the summary under "From the site". |
 | `logos/` | Partner logos. Add a logo only after the partner has confirmed its use in writing, then set `logoConfirmed` to `true`. |
-| `geo/` | Project boundary as `boundary.geojson` (WGS84; source data in CH1903+/LV95, EPSG:2056). |
+| `geo/` | Project boundary as `boundary.geojson`, reference areas as `reference-areas.geojson` (WGS84; source data in CH1903+/LV95, EPSG:2056). |
 | `data/` | Small files only. Large datasets go to an open archive (Zenodo, OpenTopography, InfoSpecies) and are linked by DOI in `nfa-project.json`. |
 
 ## How to update the entry
@@ -29,6 +29,13 @@ The project's entry in the NFA Project Register is generated from `nfa-project.j
 - **A new photo:** put it in `images/` (JPEG, about 2000 px wide, exported without GPS location), add an entry to `images` with `src`, `alt`, `caption`, `date`, `credit`, `licence`. Recognisable people only with their consent.
 - **A person agrees to be named:** set `consent` to `true`, add the ORCID.
 - **The boundary is ready:** save it as `geo/boundary.geojson`, set `location.boundary` to `geo/boundary.geojson` and `boundaryStatus` to `surveyed`.
+- **The reference areas may be shown:** save the outlines as `geo/reference-areas.geojson` (optional `name` per feature), set `location.referenceAreas` to that path and `referenceAreasStatus` to `surveyed`. Update the access level of the dataset `ds-reference` to match.
+- **Developer or funder agrees to be named:** add the organisation to `organisations`, put its `id` in `developers` or `funding.funders`.
+- **The funder agrees to publish the amount:** fill `funding.amount.value`, `currency`, `period`, set `disclosure` to `public`. Otherwise the value never leaves this file's `not-disclosed` state on the website.
+- **A value is measured:** in `measurements`, find the basket metric (group `core`), fill `value` (project area) plus `reference` (reference areas) in `series` for the round (`t0` = baseline, `t1` = 2028 ...). Leave `null` until measured.
+- **A round is complete:** set its `status` in `schedule` to `done`.
+- **The headline indicator can be stated:** set `outcome.status` (`improving`, `stable`, `declining`), `value`, `from`, `to`; set `verified` to `true` after independent review.
+- **Work on the ground:** add a line to `timeline` with `"type": "intervention"`, the `date`, optional `by`. It appears in the summary under "On the ground".
 
 ### Disclosure levels
 
@@ -38,7 +45,7 @@ The project's entry in the NFA Project Register is generated from `nfa-project.j
 | `on-request` | The entry, not the content. Requests go to register@nfa.ch |
 | `not-disclosed` | The entry with a one-line `reason` |
 
-Fees are never published.
+Fees are never published. The funding amount has its own disclosure level in `funding.amount`.
 
 ## Licence
 
