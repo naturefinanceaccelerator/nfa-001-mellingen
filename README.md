@@ -1,6 +1,7 @@
-# Mellingen – Äbereich (NFA-001)
+# Mellingen – Biodiversity corridor (NFA-001)
 
-Project repository for the Mellingen pilot of the Nature Finance Accelerator (NFA).
+Project repository for the Mellingen pilot of the Nature Finance Accelerator (NFA): a biodiversity corridor in the Reuss valley with two sites so far,
+the Äbereich (Mellingen) plus the Letzi (Fischbach-Göslikon).
 The project's entry in the NFA Project Register is generated from `nfa-project.json` in this repository:
 
 **https://register.nfa.ch/project.html?id=mellingen**
@@ -10,7 +11,7 @@ The project's entry in the NFA Project Register is generated from `nfa-project.j
 | Path | Content |
 |---|---|
 | `nfa-project.json` | The project file: description, developer plus funder, measurement rounds, basket of core metrics, datasets, agreements, organisations, timeline. The only file the register reads. |
-| `images/` | Photos shown on the register page. The first entry in `images` is the header photo; the others appear in the summary under "From the site". |
+| `images/` | Photos shown on the register page. The first entry in `images` is the header photo; the others appear in the summary under "From the site". `images/species/` holds the small species photos of the sound list. |
 | `logos/` | Partner logos. Add a logo only after the partner has confirmed its use in writing, then set `logoConfirmed` to `true`. |
 | `geo/` | Project boundary as `boundary.geojson`, reference areas as `reference-areas.geojson` (WGS84; source data in CH1903+/LV95, EPSG:2056). |
 | `data/` | Small files only. Large datasets go to an open archive (Zenodo, OpenTopography, InfoSpecies) and are linked by DOI in `nfa-project.json`. |
@@ -29,7 +30,9 @@ The project's entry in the NFA Project Register is generated from `nfa-project.j
 - **A new photo:** put it in `images/` (JPEG, about 2000 px wide, exported without GPS location), add an entry to `images` with `src`, `alt`, `caption`, `date`, `credit`, `licence`. Recognisable people only with their consent.
 - **A person agrees to be named:** set `consent` to `true`, add the ORCID.
 - **The boundary is ready:** save it as `geo/boundary.geojson`, set `location.boundary` to `geo/boundary.geojson` and `boundaryStatus` to `surveyed`.
-- **The reference areas may be shown:** save the outlines as `geo/reference-areas.geojson` (optional `name` per feature), set `location.referenceAreas` to that path and `referenceAreasStatus` to `surveyed`. Update the access level of the dataset `ds-reference` to match.
+- **A reference area is added or its outline is ready:** edit `geo/reference-areas.geojson` (points or outlines, optional `name` per feature). Update the access level of the dataset `ds-reference` to match.
+- **A new site joins the corridor:** add it to `location.sites` (`name`, `municipality`, `point` as `[longitude, latitude]`, `areaHa`), adjust `location.areaHa`.
+- **Species photos for the sound list:** double-click `get-species-photos.bat` one folder up. It adds a freely licensed photo per species to `images/species/` plus credit lines to this file.
 - **Developer or funder agrees to be named:** add the organisation to `organisations`, put its `id` in `developers` or `funding.funders`.
 - **The funder agrees to publish the amount:** fill `funding.amount.value`, `currency`, `period`, set `disclosure` to `public`. Otherwise the value never leaves this file's `not-disclosed` state on the website.
 - **A value is measured:** in `measurements`, find the basket metric (group `core`), fill `value` (project area) plus `reference` (reference areas) in `series` for the round (`t0` = baseline, `t1` = 2028 ...). Leave `null` until measured.
